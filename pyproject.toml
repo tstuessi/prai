@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "fastapi>=0.116.1",
+]
 
 [project.scripts]
 prai = "prai:main"
@@ -15,5 +17,7 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
+    "mypy>=1.17.0",
     "pytest>=8.4.1",
+    "ruff>=0.12.5",
 ]

@@ -10,3 +10,9 @@ tasks:
     desc: Run tests
     cmds:
       - uv run pytest
+
+  check:
+    desc: Run checks
+    cmds:
+      - uv run ruff check --fix
+      - uv run mypy src
