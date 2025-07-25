@@ -11,8 +11,17 @@ tasks:
     cmds:
       - uv run pytest
 
-  check:
-    desc: Run checks
+  lint:
+    desc: Run linting checks
+    cmds:
+      - uv run ruff check
+
+  fix:
+    desc: Run linting with auto-fix
     cmds:
       - uv run ruff check --fix
-      - uv run mypy src
+
+  check:
+    desc: Run type checking
+    cmds:
+      - uv run mypy src/prai

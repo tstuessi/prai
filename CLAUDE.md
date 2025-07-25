@@ -7,14 +7,16 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This project uses [Task](https://taskfile.dev/) for build automation. Available commands:
 
 - `task install` - Install dependencies using uv
-- `task test` - Run tests with pytest  
-- `task check` - Run code quality checks (ruff linting with auto-fix + mypy type checking)
+- `task test` - Run tests with pytest
+- `task lint` - Run linting checks (ruff check)
+- `task fix` - Run linting with auto-fix (ruff check --fix)
+- `task check` - Run type checking (mypy)
 
 Direct uv commands:
 - `uv sync` - Install/sync dependencies
 - `uv run pytest` - Run tests
 - `uv run ruff check --fix` - Lint and auto-fix code
-- `uv run mypy src` - Type check source code
+- `uv run mypy src/prai` - Type check source code
 - `uv run prai` - Run the main application
 
 ## Project Structure
