@@ -24,3 +24,18 @@ dev = [
     "pytest>=8.4.1",
     "ruff>=0.12.5",
 ]
+
+[tool.ruff]
+exclude = [
+    "frontend",
+]
+
+[tool.mypy]
+exclude = [
+    "frontend",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+norecursedirs = ["frontend", "node_modules", ".git", ".tox", "dist", "build"]

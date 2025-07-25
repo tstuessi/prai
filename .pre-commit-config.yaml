@@ -17,6 +17,7 @@ repos:
         language: system
         types: [python]
         pass_filenames: false
+        exclude: ^frontend/
 
   - repo: local
     hooks:
@@ -26,3 +27,4 @@ repos:
         language: system
         types: [python]
         pass_filenames: false
+        exclude: ^frontend/
