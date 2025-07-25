@@ -6,13 +6,15 @@ client = TestClient(app)
 
 
 class TestRootEndpoint:
-    """Tests for the root endpoint (/)."""
+    """Tests for the root endpoint (/) - now serves SPA."""
 
-    def test_read_root(self):
-        """Test the root endpoint returns welcome message."""
+    def test_read_root_serves_spa(self):
+        """Test the root endpoint serves the SPA or build message."""
         response = client.get("/")
         assert response.status_code == 200
-        assert response.json() == {"message": "Hello from PRAI!"}
+        # Should either serve HTML file or show build message
+        content_type = response.headers.get("content-type", "")
+        assert "text/html" in content_type or "application/json" in content_type
 
 
 class TestHealthEndpoint:
@@ -26,21 +28,21 @@ class TestHealthEndpoint:
 
 
 class TestItemsEndpoint:
-    """Tests for the items endpoint (/items/{item_id})."""
+    """Tests for the items API endpoint (/api/items/{item_id})."""
 
     def test_read_item(self):
         """Test the item endpoint with ID only."""
-        response = client.get("/items/42")
+        response = client.get("/api/items/42")
         assert response.status_code == 200
         assert response.json() == {"item_id": 42, "q": None}
 
     def test_read_item_with_query(self):
         """Test the item endpoint with ID and query parameter."""
-        response = client.get("/items/42?q=test")
+        response = client.get("/api/items/42?q=test")
         assert response.status_code == 200
         assert response.json() == {"item_id": 42, "q": "test"}
 
     def test_read_item_invalid_id(self):
         """Test the item endpoint with invalid ID type."""
-        response = client.get("/items/not-a-number")
+        response = client.get("/api/items/not-a-number")
         assert response.status_code == 422  # Validation error

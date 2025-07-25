@@ -9,11 +9,14 @@ This project uses [Task](https://taskfile.dev/) for build automation. Available 
 - `task install` - Install dependencies using uv
 - `task pre-commit` - Run pre-commit hooks on all files
 - `task setup-pre-commit` - Setup pre-commit hooks
-- `task serve` - Run the FastAPI server locally with auto-reload
+- `task serve` - Build frontend and run the FastAPI server locally with auto-reload
 - `task test` - Run tests with pytest
 - `task lint` - Run linting checks (ruff check)
 - `task fix` - Run linting with auto-fix (ruff check --fix)
 - `task check` - Run type checking (mypy)
+- `task build` - Build frontend and copy to static folder
+
+**Note**: `task serve` automatically runs `task build` first, so the frontend is always up-to-date when serving.
 
 Direct uv commands:
 - `uv sync` - Install/sync dependencies
