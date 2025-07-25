@@ -7,6 +7,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This project uses [Task](https://taskfile.dev/) for build automation. Available commands:
 
 - `task install` - Install dependencies using uv
+- `task pre-commit` - Run pre-commit hooks on all files
+- `task setup-pre-commit` - Setup pre-commit hooks
 - `task test` - Run tests with pytest
 - `task lint` - Run linting checks (ruff check)
 - `task fix` - Run linting with auto-fix (ruff check --fix)
@@ -24,14 +26,11 @@ Direct uv commands:
 This project uses pre-commit hooks to ensure code quality:
 
 ```bash
-# Install pre-commit (if not already installed)
-pip install pre-commit
+# Setup pre-commit hooks
+task setup-pre-commit
 
-# Install the git hook scripts
-pre-commit install
-
-# Run against all files (optional)
-pre-commit run --all-files
+# Run pre-commit on all files (optional)
+task pre-commit
 ```
 
 The pre-commit configuration runs:
@@ -52,7 +51,7 @@ This is a Python package managed with uv and configured with modern Python tooli
 
 ### Dependencies
 - **Runtime**: FastAPI (web framework)
-- **Development**: mypy, pytest, ruff
+- **Development**: mypy, pytest, ruff, pre-commit
 
 ### Code Organization
 - `src/prai/` - Main package directory
