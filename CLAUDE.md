@@ -19,6 +19,26 @@ Direct uv commands:
 - `uv run mypy src/prai` - Type check source code
 - `uv run prai` - Run the main application
 
+### Pre-commit Setup
+
+This project uses pre-commit hooks to ensure code quality:
+
+```bash
+# Install pre-commit (if not already installed)
+pip install pre-commit
+
+# Install the git hook scripts
+pre-commit install
+
+# Run against all files (optional)
+pre-commit run --all-files
+```
+
+The pre-commit configuration runs:
+- Standard hooks (trailing whitespace, end-of-file fixer, YAML/TOML validation, etc.)
+- `task fix` - Auto-fix code with ruff
+- `task check` - Type checking with mypy
+
 ## Project Structure
 
 This is a Python package managed with uv and configured with modern Python tooling:
