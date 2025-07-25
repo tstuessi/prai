@@ -6,6 +6,16 @@ tasks:
     cmds:
       - uv sync
 
+  pre-commit:
+    desc: Run pre-commit hooks
+    cmds:
+      - uv run pre-commit run --all-files
+
+  setup-pre-commit:
+    desc: Setup pre-commit hooks
+    cmds:
+      - uv run pre-commit install
+
   test:
     desc: Run tests
     cmds:
