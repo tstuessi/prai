@@ -1,0 +1,14 @@
+[project]
+name = "prai"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+prai = "prai:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
