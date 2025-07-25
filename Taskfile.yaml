@@ -1,0 +1,12 @@
+version: 3
+
+tasks:
+  install:
+    desc: Install dependencies
+    cmds:
+      - uv sync
+
+  test:
+    desc: Run tests
+    cmds:
+      - uv run pytest
