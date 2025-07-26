@@ -1,0 +1,50 @@
+version: 3
+
+tasks:
+  install:
+    desc: Install dependencies
+    cmds:
+      - uv sync
+
+  pre-commit:
+    desc: Run pre-commit hooks
+    cmds:
+      - uv run pre-commit run --all-files
+
+  setup-pre-commit:
+    desc: Setup pre-commit hooks
+    cmds:
+      - uv run pre-commit install
+
+  serve:
+    desc: Build frontend and run the FastAPI server locally
+    deps: [build]
+    cmds:
+      - uv run uvicorn prai.app:app --reload
+
+  test:
+    desc: Run tests
+    cmds:
+      - uv run pytest
+
+  lint:
+    desc: Run linting checks
+    cmds:
+      - uv run ruff check
+
+  fix:
+    desc: Run linting with auto-fix
+    cmds:
+      - uv run ruff check --fix
+
+  check:
+    desc: Run type checking
+    cmds:
+      - uv run mypy src/prai
+
+  build:
+    desc: Build frontend and copy to static folder
+    cmds:
+      - cd frontend && npm run build
+      - mkdir -p src/prai/static
+      - cp -r frontend/dist/* src/prai/static/
