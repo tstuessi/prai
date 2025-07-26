@@ -37,6 +37,11 @@ tasks:
     cmds:
       - uv run ruff check --fix
 
+  format:
+    desc: Format code using ruff
+    cmds:
+      - uv run ruff format
+
   check:
     desc: Run type checking
     cmds:
