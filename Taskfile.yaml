@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
 version: 3
 
 tasks:
@@ -53,3 +55,9 @@ tasks:
       - cd frontend && npm run build
       - mkdir -p src/prai/static
       - cp -r frontend/dist/* src/prai/static/
+
+  # Utilities
+  generate-model-from-schema:
+    desc: Generate Pydantic models from OpenAPI schema
+    cmds:
+      - uv run datamodel-codegen {{ .CLI_ARGS }} --output local-tmp/model.py
