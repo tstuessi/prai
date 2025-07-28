@@ -3,12 +3,21 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
+from fastapi.middleware.cors import CORSMiddleware
 
 from prai.routers.api.github.users import router as github_users_router
 
 logging.basicConfig(level=logging.DEBUG)
 
 app = FastAPI(title="PRAI", description="A basic FastAPI application", version="0.1.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allow all origins for development; adjust in production
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Get the static directory path
 static_dir = Path(__file__).parent / "static"

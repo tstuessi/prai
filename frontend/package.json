@@ -7,10 +7,15 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "openapi": "openapi-typescript --output src/types/api.d.ts http://localhost:8000/openapi.json",
+    "test:ts": "tsc --noEmit"
   },
   "dependencies": {
+    "bootstrap": "^5.3.7",
+    "openapi-fetch": "^0.14.0",
     "react": "^19.1.0",
+    "react-bootstrap": "^2.10.10",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
@@ -22,6 +27,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^16.3.0",
+    "openapi-typescript": "^7.8.0",
     "typescript": "~5.8.3",
     "typescript-eslint": "^8.35.1",
     "vite": "^7.0.4"
