@@ -6,11 +6,11 @@ const client = createClient<paths>({
 });
 
 async function getUserInfo() {
-    const { data, error } = await client.GET("/api/github/user");
-    if (error) {
-        throw error;
-    }
-    return data;
+  const { data, error } = await client.GET("/api/github/user");
+  if (error) {
+    throw error;
+  }
+  return data;
 }
 
 export { getUserInfo };

@@ -37,3 +37,11 @@ repos:
         types: [python]
         pass_filenames: false
         exclude: ^frontend/
+
+  - repo: local
+    hooks:
+      - id: npm-lint
+        name: npm lint
+        entry: bash -c "cd frontend && npm run lint"
+        language: system
+        pass_filenames: false
