@@ -3,7 +3,7 @@ import { SinglePageApp } from "../SinglePageApp";
 
 export function Root() {
     return (
-        <Container fluid>
+        <Container fluid style={{ padding: 0 }}>
             <SinglePageApp />
         </Container>
     )

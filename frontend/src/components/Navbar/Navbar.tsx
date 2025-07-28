@@ -5,7 +5,7 @@ import { Container } from 'react-bootstrap';
 
 export function NavbarComponent() {
   return (
-    <Navbar className="bg-body-tertiary">
+    <Navbar className="bg-body-tertiary" style={{ paddingLeft: '1rem', paddingRight: '1rem' }}>
       <Container fluid>
         <Navbar.Brand href="#home">PrAI</Navbar.Brand>
         <Navbar.Toggle />
@@ -14,6 +14,6 @@ export function NavbarComponent() {
           <UserInfoName />
         </Navbar.Collapse>
       </Container>
-    </Navbar>
+    </Navbar >
   );
 }
