@@ -1,9 +1,8 @@
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { UserInfo } from "./types/github/User";
 import { Root } from "./components/Root";
 import { getUserInfo } from "./hooks/User";
-
-export const UserContext = createContext<UserInfo | null>(null);
+import { UserContext } from "./stores/UserContext";
 
 function App() {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
