@@ -3,7 +3,7 @@ import { SinglePageApp } from './SinglePageApp'
 import { UserContext } from '../../stores/UserContext'
 
 // Mock the NavbarComponent to focus on SinglePageApp structure
-vi.mock('../Navbar', () => ({
+vi.mock('./Navbar', () => ({
   NavbarComponent: () => <div data-testid="navbar-component">NavbarComponent</div>
 }))
 
