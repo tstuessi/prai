@@ -104,3 +104,4 @@ The project integrates a React frontend with a FastAPI backend. The frontend gen
 - For mocking/patching, prefer pytest fixtures over decorators
 - If fixtures aren't suitable, use patch decorators as a fallback
 - Test factories are available in `tests/factories.py` using factory-boy
+- **Add docstrings to tests that improve readability**
