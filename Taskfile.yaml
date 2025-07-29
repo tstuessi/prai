@@ -27,7 +27,7 @@ tasks:
   test:
     desc: Run tests
     cmds:
-      - uv run pytest {{ .CLI_ARGS }} --cov=src/prai
+      - uv run pytest {{ .CLI_ARGS }} --cov=src
 
   lint:
     desc: Run linting checks
