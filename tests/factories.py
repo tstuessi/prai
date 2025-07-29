@@ -1,6 +1,6 @@
 import factory
 
-from prai.models.github.user import Plan, PrivateUser, PublicUser, User
+from prai.models.github import Plan, PrivateUser, PublicUser, User
 
 
 class PlanFactory(factory.Factory):

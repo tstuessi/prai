@@ -1,4 +1,4 @@
-from prai.models.github.user import User
+from prai.models.github import User
 from prai.services.github.make_request import GithubRequestProvider
 
 

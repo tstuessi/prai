@@ -58,6 +58,16 @@ tasks:
 
   # Utilities
   generate-model-from-schema:
-    desc: Generate Pydantic models from OpenAPI schema
+    desc: Generate Pydantic models from OpenAPI schema - pass input and output file paths
     cmds:
-      - uv run datamodel-codegen {{ .CLI_ARGS }} --output local-tmp/model.py
+      - |
+        uv run datamodel-codegen {{ .CLI_ARGS }} \
+        --formatters ruff-check \
+        --output-model-type pydantic_v2.BaseModel \
+        --use-schema-description \
+        --collapse-root-models \
+        --enum-field-as-literal one \
+        --use-union-operator \
+        --use-default-kwarg \
+        --use-field-description \
+        --use-title-as-name

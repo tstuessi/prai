@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 
-from prai.models.github.user import User
+from prai.models.github import User
 from prai.services.github.provider import GithubProvider
 
 router = APIRouter(prefix="/api/github", tags=["github"])
