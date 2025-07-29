@@ -6,8 +6,12 @@ import { UserContext } from "../../../stores/UserContext";
 export function UserPicture() {
   const { userInfo } = useContext(UserContext);
   return (
-    <Navbar.Brand>
-      {userInfo ? <img src={userInfo.avatar_url} alt={userInfo.name || undefined} height={"30"} /> : null}
-    </Navbar.Brand>
+    <>
+      {userInfo && userInfo.avatar_url ? (
+        <Navbar.Brand>
+          <img src={userInfo.avatar_url} alt={userInfo.name || undefined} height={"30"} />
+        </Navbar.Brand>
+      ) : null}
+    </>
   )
 }

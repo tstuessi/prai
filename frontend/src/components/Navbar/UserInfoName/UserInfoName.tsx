@@ -10,7 +10,7 @@ export function UserInfoName() {
       {userInfo ? (
         userInfo.name
       ) : (
-        <p>Loading...</p>
+        "Loading..."
       )}
     </Navbar.Text>
   )

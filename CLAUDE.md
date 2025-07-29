@@ -59,18 +59,24 @@ This is a full-stack application with a Python backend and React frontend:
 ### Frontend (React)
 - **Framework**: React 19.1.0 with TypeScript
 - **Build Tool**: Vite 7.0.4
+- **Testing**: Vitest 3.2.4 with React Testing Library
 - **UI Library**: React Bootstrap 2.10.10 + Bootstrap 5.3.7
 - **API Client**: openapi-fetch 0.14.0
 - **Type Checking**: TypeScript 5.8.3
 - **Linting**: ESLint 9.30.1
 
 #### Frontend Commands
+**Note**: All npm commands must be run from the `frontend/` directory.
+
 - `npm run dev` - Start development server
 - `npm run build` - Build for production (TypeScript compile + Vite build)
 - `npm run lint` - Run ESLint
 - `npm run preview` - Preview production build
 - `npm run openapi` - Generate TypeScript types from OpenAPI spec at localhost:8000
 - `npm run test:ts` - Type check without emitting files
+- `npm run test` - Run tests with Vitest in watch mode
+- `npm run test:ui` - Run tests with Vitest UI interface
+- `npm run test:run` - Run tests once (non-watch mode)
 
 ### Code Organization
 
