@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { UserInfoName } from './UserInfoName'
-import { UserContext } from '../../../stores/UserContext'
+import { UserContext } from '../../../../stores/UserContext'
 
 const mockUserInfo = {
   id: 1,

@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Navbar } from "react-bootstrap";
-import { UserContext } from "../../../stores/UserContext";
+import { UserContext } from "../../../../stores/UserContext";
 
 
 export function UserPicture() {

@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react'
 import { NavbarComponent } from './Navbar'
-import { UserContext } from '../../stores/UserContext'
+import { UserContext } from '../../../stores/UserContext'
 
 // Mock the child components to focus on Navbar structure
 vi.mock('./UserPicture', () => ({

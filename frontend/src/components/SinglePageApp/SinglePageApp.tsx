@@ -1,5 +1,5 @@
 import { Col, Container, Row } from "react-bootstrap";
-import { NavbarComponent } from "../Navbar";
+import { NavbarComponent } from "./Navbar";
 
 export function SinglePageApp() {
   return (
