@@ -5,7 +5,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
-from prai.routers.api.github.users import router as github_users_router
+from prai.routers.api.github.user import router as github_users_router
 
 logging.basicConfig(level=logging.DEBUG)
 
