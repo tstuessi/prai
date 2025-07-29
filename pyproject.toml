@@ -23,10 +23,12 @@ build-backend = "hatchling.build"
 [dependency-groups]
 dev = [
     "datamodel-code-generator>=0.32.0",
+    "factory-boy>=3.3.3",
     "httpx>=0.28.1",
     "mypy>=1.17.0",
     "pre-commit>=4.2.0",
     "pytest>=8.4.1",
+    "pytest-asyncio>=1.1.0",
     "ruff>=0.12.5",
 ]
 

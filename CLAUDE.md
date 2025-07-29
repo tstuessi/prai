@@ -93,3 +93,14 @@ This is a full-stack application with a Python backend and React frontend:
 - `frontend/dist/` - Built frontend assets
 
 The project integrates a React frontend with a FastAPI backend. The frontend generates TypeScript types from the backend's OpenAPI specification.
+
+## Testing Guidelines
+
+### Python Testing with pytest
+
+- Use pytest for all Python testing
+- Group tests into test classes centered around logical groupings (providers, routes, models, etc.)
+- For tests with multiple cases, use `pytest.mark.parametrize`
+- For mocking/patching, prefer pytest fixtures over decorators
+- If fixtures aren't suitable, use patch decorators as a fallback
+- Test factories are available in `tests/factories.py` using factory-boy
