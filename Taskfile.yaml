@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
+
 version: 3
 
 tasks:
@@ -25,7 +27,7 @@ tasks:
   test:
     desc: Run tests
     cmds:
-      - uv run pytest
+      - uv run pytest {{ .CLI_ARGS }} --cov=src
 
   lint:
     desc: Run linting checks
@@ -36,6 +38,11 @@ tasks:
     desc: Run linting with auto-fix
     cmds:
       - uv run ruff check --fix
+
+  format:
+    desc: Format code using ruff
+    cmds:
+      - uv run ruff format
 
   check:
     desc: Run type checking
@@ -48,3 +55,19 @@ tasks:
       - cd frontend && npm run build
       - mkdir -p src/prai/static
       - cp -r frontend/dist/* src/prai/static/
+
+  # Utilities
+  generate-model-from-schema:
+    desc: Generate Pydantic models from OpenAPI schema - pass input and output file paths
+    cmds:
+      - |
+        uv run datamodel-codegen {{ .CLI_ARGS }} \
+        --formatters ruff-check \
+        --output-model-type pydantic_v2.BaseModel \
+        --use-schema-description \
+        --collapse-root-models \
+        --enum-field-as-literal one \
+        --use-union-operator \
+        --use-default-kwarg \
+        --use-field-description \
+        --use-title-as-name

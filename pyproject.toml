@@ -5,7 +5,11 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "aiohttp>=3.12.14",
     "fastapi>=0.116.1",
+    "pydantic[email]>=2.11.7",
+    "pydantic-settings>=2.10.1",
+    "requests>=2.32.4",
     "uvicorn>=0.32.1",
 ]
 
@@ -18,10 +22,14 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = [
+    "datamodel-code-generator>=0.32.0",
+    "factory-boy>=3.3.3",
     "httpx>=0.28.1",
     "mypy>=1.17.0",
     "pre-commit>=4.2.0",
     "pytest>=8.4.1",
+    "pytest-asyncio>=1.1.0",
+    "pytest-cov>=6.2.1",
     "ruff>=0.12.5",
 ]
 
@@ -29,11 +37,13 @@ dev = [
 exclude = [
     "frontend",
 ]
+line-length = 120
 
 [tool.mypy]
 exclude = [
     "frontend",
 ]
+plugins = ['pydantic.mypy']
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

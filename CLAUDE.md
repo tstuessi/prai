@@ -44,22 +44,64 @@ The pre-commit configuration runs:
 
 ## Project Structure
 
-This is a Python package managed with uv and configured with modern Python tooling:
+This is a full-stack application with a Python backend and React frontend:
 
+### Backend (Python)
 - **Package Manager**: uv (modern Python package manager)
 - **Build System**: Hatchling
 - **Testing**: pytest
 - **Linting**: ruff
 - **Type Checking**: mypy
 - **Python Version**: 3.13+
-
-### Dependencies
 - **Runtime**: FastAPI (web framework)
 - **Development**: mypy, pytest, ruff, pre-commit
 
+### Frontend (React)
+- **Framework**: React 19.1.0 with TypeScript
+- **Build Tool**: Vite 7.0.4
+- **Testing**: Vitest 3.2.4 with React Testing Library
+- **UI Library**: React Bootstrap 2.10.10 + Bootstrap 5.3.7
+- **API Client**: openapi-fetch 0.14.0
+- **Type Checking**: TypeScript 5.8.3
+- **Linting**: ESLint 9.30.1
+
+#### Frontend Commands
+**Note**: All npm commands must be run from the `frontend/` directory.
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production (TypeScript compile + Vite build)
+- `npm run lint` - Run ESLint
+- `npm run preview` - Preview production build
+- `npm run openapi` - Generate TypeScript types from OpenAPI spec at localhost:8000
+- `npm run test:ts` - Type check without emitting files
+- `npm run test` - Run tests with Vitest in watch mode
+- `npm run test:ui` - Run tests with Vitest UI interface
+- `npm run test:run` - Run tests once (non-watch mode)
+
 ### Code Organization
+
+#### Backend
 - `src/prai/` - Main package directory
 - `src/prai/__init__.py` - Package initialization with main() function
 - `src/prai/app.py` - Empty application file (likely for FastAPI app)
 
-The project is in early development with minimal code structure. The main entry point is defined in `pyproject.toml` as `prai = "prai:main"`.
+#### Frontend
+- `frontend/src/` - React application source
+- `frontend/src/components/` - React components (Navbar, Root, SinglePageApp)
+- `frontend/src/types/` - TypeScript type definitions including API types
+- `frontend/src/hooks/` - React hooks
+- `frontend/dist/` - Built frontend assets
+
+The project integrates a React frontend with a FastAPI backend. The frontend generates TypeScript types from the backend's OpenAPI specification.
+
+## Testing Guidelines
+
+### Python Testing with pytest
+
+- Use pytest for all Python testing
+- Group tests into test classes centered around logical groupings (providers, routes, models, etc.)
+- For tests with multiple cases, use `pytest.mark.parametrize`
+- For mocking/patching, prefer pytest fixtures over decorators
+- If fixtures aren't suitable, use patch decorators as a fallback
+- Test factories are available in `tests/factories.py` using factory-boy
+- **Add docstrings to tests that improve readability**
