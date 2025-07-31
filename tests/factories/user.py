@@ -1,6 +1,7 @@
 import factory
 
-from prai.models.github import Plan, PrivateUser, PublicUser, User
+from prai.models.github import UserGet
+from prai.models.github.user__get import PrivateUser, PublicUser, Plan
 
 
 class PlanFactory(factory.Factory):
@@ -116,9 +117,9 @@ class PublicUserFactory(factory.Factory):
     collaborators = factory.Faker("random_int", min=0, max=5)
 
 
-class UserFactory(factory.Factory):
+class UserGetFactory(factory.Factory):
     class Meta:
-        model = User
+        model = UserGet
 
     root = factory.SubFactory(PrivateUserFactory)
 
