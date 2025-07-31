@@ -1,4 +1,4 @@
-from .user import Model as User
-from .user import PrivateUser, PublicUser, Plan
+from .user__get import Model as UserGet
+from .pull_request__get import PullRequest as PullRequestGet
 
-__all__ = ["User", "PrivateUser", "PublicUser", "Plan"]
+__all__ = ["UserGet", "PullRequestGet"]

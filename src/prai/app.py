@@ -6,6 +6,7 @@ from fastapi.responses import FileResponse
 from fastapi.middleware.cors import CORSMiddleware
 
 from prai.routers.api.github.user import router as github_users_router
+from prai.routers.api.github.pull_request import router as github_pull_request_router
 
 logging.basicConfig(level=logging.DEBUG)
 
@@ -32,6 +33,7 @@ async def health_check():
 
 # Include the GitHub API router
 app.include_router(github_users_router)
+app.include_router(github_pull_request_router)
 
 
 # Mount static files (this needs to be after API routes but before catch-all)

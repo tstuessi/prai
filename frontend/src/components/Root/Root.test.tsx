@@ -73,7 +73,7 @@ describe('Root', () => {
     // Root should only contain a single container with SinglePageApp inside
     const rootElement = container.firstChild
     expect(rootElement).toHaveClass('container-fluid')
-    expect(rootElement?.children).toHaveLength(1)
+    expect(rootElement?.childNodes).toHaveLength(1)
   })
 
   it('maintains Bootstrap container-fluid class', () => {
