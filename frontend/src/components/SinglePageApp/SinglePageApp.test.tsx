@@ -7,6 +7,11 @@ vi.mock('./Navbar', () => ({
   NavbarComponent: () => <div data-testid="navbar-component">NavbarComponent</div>
 }))
 
+// Mock the Workspace component
+vi.mock('./Workspace', () => ({
+  Workspace: () => <div data-testid="workspace-component">Workspace</div>
+}))
+
 const mockUserInfo = {
   id: 1,
   login: 'testuser',
@@ -28,7 +33,7 @@ describe('SinglePageApp', () => {
     expect(fluidContainer).toHaveStyle({ padding: '0' })
   })
 
-  it('renders Bootstrap row and column structure', () => {
+  it('renders Bootstrap row structure', () => {
     const { container } = render(
       <UserContext.Provider value={{ userInfo: mockUserInfo, setUserInfo: vi.fn() }}>
         <SinglePageApp />
@@ -36,10 +41,7 @@ describe('SinglePageApp', () => {
     )
 
     const rows = container.querySelectorAll('.row')
-    expect(rows).toHaveLength(2)
-
-    const cols = container.querySelectorAll('.col')
-    expect(cols).toHaveLength(2)
+    expect(rows).toHaveLength(1) // Only navbar row in SinglePageApp
   })
 
   it('renders the NavbarComponent in the first row', () => {
@@ -57,15 +59,14 @@ describe('SinglePageApp', () => {
     expect(firstRow).toContainElement(navbar)
   })
 
-  it('renders welcome content in the second row', () => {
+  it('renders Workspace component', () => {
     render(
       <UserContext.Provider value={{ userInfo: mockUserInfo, setUserInfo: vi.fn() }}>
         <SinglePageApp />
       </UserContext.Provider>
     )
 
-    expect(screen.getByRole('heading', { name: 'Welcome to PrAI' })).toBeInTheDocument()
-    expect(screen.getByText('This is a single-page application built with React and Bootstrap.')).toBeInTheDocument()
+    expect(screen.getByTestId('workspace-component')).toBeInTheDocument()
   })
 
   it('renders main content in a fluid container', () => {
@@ -76,11 +77,10 @@ describe('SinglePageApp', () => {
     )
 
     const fluidContainers = container.querySelectorAll('.container-fluid')
-    expect(fluidContainers).toHaveLength(2) // Main container + content container
+    expect(fluidContainers).toHaveLength(1) // Only main container
 
-    const welcomeHeading = screen.getByRole('heading', { name: 'Welcome to PrAI' })
-    const contentContainer = welcomeHeading.closest('.container-fluid')
-    expect(contentContainer).toBeInTheDocument()
+    const workspace = screen.getByTestId('workspace-component')
+    expect(workspace).toBeInTheDocument()
   })
 
   it('maintains proper layout structure', () => {
@@ -90,10 +90,9 @@ describe('SinglePageApp', () => {
       </UserContext.Provider>
     )
 
-    // Should have main container > row > col > navbar
+    // Should have main container > row > navbar
     const navbar = screen.getByTestId('navbar-component')
-    const navbarCol = navbar.closest('.col')
-    const navbarRow = navbarCol?.closest('.row')
+    const navbarRow = navbar.closest('.row')
     const mainContainer = navbarRow?.closest('.container-fluid')
 
     expect(mainContainer).toBe(container.firstChild)
@@ -107,33 +106,34 @@ describe('SinglePageApp', () => {
     )
 
     expect(screen.getByTestId('navbar-component')).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'Welcome to PrAI' })).toBeInTheDocument()
+    expect(screen.getByTestId('workspace-component')).toBeInTheDocument()
   })
 
-  it('renders heading with correct level', () => {
-    render(
-      <UserContext.Provider value={{ userInfo: mockUserInfo, setUserInfo: vi.fn() }}>
-        <SinglePageApp />
-      </UserContext.Provider>
-    )
-
-    const heading = screen.getByRole('heading', { name: 'Welcome to PrAI' })
-    expect(heading.tagName).toBe('H1')
-  })
-
-  it('has comment placeholder for main content', () => {
+  it('renders navbar in the first row', () => {
     const { container } = render(
       <UserContext.Provider value={{ userInfo: mockUserInfo, setUserInfo: vi.fn() }}>
         <SinglePageApp />
       </UserContext.Provider>
     )
 
-    // Check that the comment exists in the source by checking structure
-    const rows = container.querySelectorAll('.row')
-    expect(rows[1]).toBeInTheDocument() // Second row for main content
+    const navbar = screen.getByTestId('navbar-component')
+    const firstRow = container.querySelector('.row')
+    expect(firstRow).toContainElement(navbar)
   })
 
-  it('contains navbar and content in separate rows', () => {
+  it('renders workspace outside of rows', () => {
+    const { container } = render(
+      <UserContext.Provider value={{ userInfo: mockUserInfo, setUserInfo: vi.fn() }}>
+        <SinglePageApp />
+      </UserContext.Provider>
+    )
+
+    const workspace = screen.getByTestId('workspace-component')
+    const mainContainer = container.querySelector('.container-fluid')
+    expect(mainContainer).toContainElement(workspace)
+  })
+
+  it('contains navbar in row and workspace as sibling', () => {
     const { container } = render(
       <UserContext.Provider value={{ userInfo: mockUserInfo, setUserInfo: vi.fn() }}>
         <SinglePageApp />
@@ -141,14 +141,16 @@ describe('SinglePageApp', () => {
     )
 
     const rows = container.querySelectorAll('.row')
+    expect(rows).toHaveLength(1)
 
     // First row should contain navbar
     const navbar = screen.getByTestId('navbar-component')
     expect(rows[0]).toContainElement(navbar)
 
-    // Second row should contain welcome content
-    const welcomeHeading = screen.getByRole('heading', { name: 'Welcome to PrAI' })
-    expect(rows[1]).toContainElement(welcomeHeading)
+    // Workspace should be a direct child of main container
+    const workspace = screen.getByTestId('workspace-component')
+    const mainContainer = container.querySelector('.container-fluid')
+    expect(mainContainer).toContainElement(workspace)
   })
 
   it('uses correct Bootstrap classes', () => {
@@ -160,17 +162,11 @@ describe('SinglePageApp', () => {
 
     // Check main container
     expect(container.firstChild).toHaveClass('container-fluid')
+    expect(container.firstChild).toHaveClass('d-flex')
+    expect(container.firstChild).toHaveClass('flex-column')
 
-    // Check rows
-    const rows = container.querySelectorAll('.row')
-    rows.forEach(row => {
-      expect(row).toHaveClass('row')
-    })
-
-    // Check columns
-    const cols = container.querySelectorAll('.col')
-    cols.forEach(col => {
-      expect(col).toHaveClass('col')
-    })
+    // Check row
+    const row = container.querySelector('.row')
+    expect(row).toHaveClass('row')
   })
 })
