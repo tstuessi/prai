@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import type { UserInfo } from "./types/github/User";
-import { Root } from "./components/Root";
 import { getUserInfo } from "./hooks/User";
 import { UserContext } from "./stores/UserContext";
+import { SinglePageApp } from "./components/SinglePageApp";
+import { Container } from "react-bootstrap";
 
 function App() {
   const [userInfo, setUserInfo] = useState<UserInfo | null>(null);
@@ -23,7 +24,9 @@ function App() {
 
   return (
     <UserContext.Provider value={{ userInfo, setUserInfo }}>
-      <Root />
+      <Container fluid style={{ padding: 0 }}>
+        <SinglePageApp />
+      </Container>
     </UserContext.Provider>
 
   );

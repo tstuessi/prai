@@ -1,23 +1,14 @@
-import { Col, Container, Row } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { NavbarComponent } from "./Navbar";
+import { Workspace } from "./Workspace";
 
 export function SinglePageApp() {
   return (
-    <Container fluid style={{ padding: 0 }}>
+    <Container fluid className="d-flex flex-column" style={{ padding: 0, height: "100vh" }}>
       <Row>
-        <Col>
-          <NavbarComponent />
-        </Col>
+        <NavbarComponent />
       </Row>
-      <Row>
-        {/* Main content will go here */}
-        <Col>
-          <Container fluid>
-            <h1> Welcome to PrAI</h1>
-            <p>This is a single-page application built with React and Bootstrap.</p>
-          </Container>
-        </Col>
-      </Row>
+      <Workspace />
     </Container>
   )
 }
