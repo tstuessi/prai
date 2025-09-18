@@ -29,7 +29,7 @@ tasks:
     env:
       GITHUB_TOKEN: "test_token"
     cmds:
-      - uv run pytest tests -- {{ .CLI_ARGS }} --cov=src
+      - uv run pytest tests --cov=src {{ .CLI_ARGS }}
 
   test:
     desc: Run tests
