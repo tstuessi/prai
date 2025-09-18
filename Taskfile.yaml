@@ -24,6 +24,18 @@ tasks:
     cmds:
       - uv run uvicorn prai.app:app --reload
 
+  test-frontend:
+    desc: Run frontend tests
+    cmds:
+      - cd frontend && npm run test:run
+
+  test-backend:
+    desc: Run backend tests
+    env:
+      GITHUB_TOKEN: "test_token"
+    cmds:
+      - uv run pytest tests --cov=src {{ .CLI_ARGS }}
+
   test:
     desc: Run tests
     cmds:
