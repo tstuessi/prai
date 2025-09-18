@@ -14,8 +14,8 @@ class TestGithubProvider:
     @pytest.fixture
     def provider_with_mock_request(self):
         """Create a GithubProvider with mocked request provider."""
-        provider = GithubProvider()
-        provider.request_provider = AsyncMock(spec=GithubRequestProvider)
+        request_provider = AsyncMock(spec=GithubRequestProvider)
+        provider = GithubProvider(request_provider=request_provider)
         return provider
 
     def test_init_creates_request_provider(self):

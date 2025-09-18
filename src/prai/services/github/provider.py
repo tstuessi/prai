@@ -1,11 +1,12 @@
 import logging
+from typing import Optional
 from prai.models.github import UserGet, PullRequestGet
 from prai.services.github.make_request import GithubRequestProvider
 
 
 class GithubProvider:
-    def __init__(self):
-        self.request_provider = GithubRequestProvider()
+    def __init__(self, request_provider: Optional[GithubRequestProvider] = None):
+        self.request_provider = request_provider or GithubRequestProvider()
         self.logger = logging.getLogger(__name__)
 
     async def get_current_user(self) -> UserGet:

@@ -26,8 +26,11 @@ tasks:
 
   test:
     desc: Run tests
+    env:
+      GITHUB_TOKEN: "test_token"
     cmds:
       - uv run pytest {{ .CLI_ARGS }} --cov=src
+      - cd frontend && npm run test:run
 
   lint:
     desc: Run linting checks
