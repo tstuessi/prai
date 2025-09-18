@@ -38,7 +38,7 @@ jobs:
         run: uv sync
 
       - name: Run Tests
-        run: task test-backend -- --junitxml=pytest.xml --cov-report=term-missing:skip-covered | tee pytest-coverage.txt
+        run: task test-backend -- --junitxml=pytest.xml --cov-report=term-missing | tee pytest-coverage.txt
 
       - name: Pytest coverage comment
         uses: MishaKav/pytest-coverage-comment@1bdbba85fb74a2fdc1ec66383acec1091610f82b
