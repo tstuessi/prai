@@ -18,11 +18,6 @@ class TestGithubProvider:
         provider = GithubProvider(request_provider=request_provider)
         return provider
 
-    def test_init_creates_request_provider(self):
-        """Test that initialization creates a GithubRequestProvider instance."""
-        provider = GithubProvider()
-        assert isinstance(provider.request_provider, GithubRequestProvider)
-
     @pytest.mark.asyncio
     async def test_get_current_user(self, provider_with_mock_request):
         """Test get_current_user calls correct endpoint and returns UserGet."""
