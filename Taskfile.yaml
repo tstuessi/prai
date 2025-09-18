@@ -24,6 +24,11 @@ tasks:
     cmds:
       - uv run uvicorn prai.app:app --reload
 
+  test-frontend:
+    desc: Run frontend tests
+    cmds:
+      - cd frontend && npm run test:run
+
   test-backend:
     desc: Run backend tests
     env:
