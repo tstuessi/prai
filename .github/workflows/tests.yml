@@ -65,8 +65,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Install Task
-        uses: go-task/setup-task@0ab1b2a65bc55236a3bc64cde78f80e20e8885c2
-
       - name: Run Tests
         run: npm run test:run
