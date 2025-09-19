@@ -24,6 +24,21 @@ tasks:
     cmds:
       - uv run uvicorn prai.app:app --reload
 
+  dev:
+    desc: Start development environment with Docker Compose (frontend + backend with hot reload)
+    cmds:
+      - docker-compose -f docker-compose.dev.yml up --build
+
+  dev-detached:
+    desc: Start development environment in background
+    cmds:
+      - docker-compose -f docker-compose.dev.yml up -d
+
+  dev-down:
+    desc: Stop development environment
+    cmds:
+      - docker-compose -f docker-compose.dev.yml down
+
   test-frontend:
     desc: Run frontend tests
     cmds:
