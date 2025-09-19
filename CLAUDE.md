@@ -18,6 +18,27 @@ This project uses [Task](https://taskfile.dev/) for build automation. Available 
 
 **Note**: `task serve` automatically runs `task build` first, so the frontend is always up-to-date when serving.
 
+### Docker Development
+
+For development with hot reload for both frontend and backend:
+
+```bash
+# Start both frontend and backend with hot reload
+task dev
+
+# Start in background
+task dev-detached
+
+# Stop services
+task dev-down
+```
+
+This setup provides:
+- FastAPI backend on http://localhost:8000 with uvicorn auto-reload
+- React frontend on http://localhost:5173 with Vite hot reload
+- Volume mounts for immediate file change detection
+- Isolated environments with proper dependency management
+
 Direct uv commands:
 - `uv sync` - Install/sync dependencies
 - `uv run pytest` - Run tests
